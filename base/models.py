@@ -1,8 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+from django.contrib.auth.models import AbstractUser
 
+class User(AbstractUser):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, unique=True, null=True, blank=True)
+    bio = models.TextField(max_length=500, null=True, blank=True)
 
+    # avatar =
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 # Create your models here
 class Topic(models.Model):
